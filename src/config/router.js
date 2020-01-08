@@ -1,29 +1,21 @@
 import { createAppContainer } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 import {
     createStackNavigator,
     StackViewStyleInterpolator,
 } from 'react-navigation-stack';
 import * as Screens from "../screens";
 
-/*
- *   构建导航
- *
- *   导航结构 ：
- *      >Home   (首页)
- *          >>Details (详情页)
- *          >>Comment (评论页)
- *          >>....
- *
- */
-// 二级导航
-const MainScreen = createStackNavigator(
+
+const MainScreen = createBottomTabNavigator(
     {
         Home: Screens.home,
+        Setting:Screens.setting,
     },
     {
         // 设置header默认样式
         defaultNavigationOptions: {
-            gesturesEnabled: true,
+            gesturenabled: true,
             headerStyle: {
                 backgroundColor: '#00a2ed',
             },
@@ -32,13 +24,6 @@ const MainScreen = createStackNavigator(
                 fontSize: 16,
             },
         },
-        // 设置转场动画效果（安卓实现类似iOS的push动画)    来源： https://www.jianshu.com/p/dc9df5826651
-        // transitionConfig: () => ({
-        //     screenInterpolator: StackViewStyleInterpolator.forHorizontal,
-        //     transitionSpec: {
-        //         duration: 280, //动画时间
-        //     },
-        // }),
     },
 );
 
