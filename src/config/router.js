@@ -6,11 +6,27 @@ import {
 } from 'react-navigation-stack';
 import * as Screens from "../screens";
 
-
-const MainScreen = createBottomTabNavigator(
+const HomeTabNavigator = createBottomTabNavigator(
     {
-        Home: Screens.home,
-        Setting:Screens.setting,
+        Home: {
+            screen:Screens.home,
+            navigationOptions: {
+                tabBarLabel: "首页",
+                // tabBarIcon: ({ focused, tintColor }) => (
+                //   <Icon
+                //     name="home"
+                //     size={pTd(30)}
+                //     style={{ color: focused ? APPSTYLECOLOR() : TEXTCOLOR }}
+                //   />
+                // )
+              }
+        },
+        Setting: {
+            screen:Screens.setting,
+            navigationOptions:{
+                tabBarLabel: "设置",
+            }
+        },
     },
     {
         // 设置header默认样式
@@ -26,8 +42,18 @@ const MainScreen = createBottomTabNavigator(
         },
     },
 );
+const MainNavigator = createStackNavigator(
+    {
+        HomeTabNavigator: {
+            screen: HomeTabNavigator,
+            navigationOptions: {
+                headerShown:false
+            }
+        },
+        Login: Screens.login,
+    }
+);
 
 
-const AppNavigator = createAppContainer(MainScreen);
-
+const AppNavigator = createAppContainer(MainNavigator);
 export default AppNavigator;
